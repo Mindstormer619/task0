@@ -1,0 +1,50 @@
+<!doctype html>
+
+<html>
+
+<head>
+	<title>Task 0&colon; Animation</title>
+</head>
+
+<body>
+	<div id="dot"></div>
+	<style>
+		#dot{
+			position:absolute;
+			top:50px;
+			left:100px;
+			width:50px;
+			height:50px;
+			background:red;
+			border-radius:70%;
+		}
+	</style>
+	
+	<script>
+		function $(id) {
+			return document.getElementById(id);
+		}
+		/*
+		var start = null;
+
+		var d = $('dot');
+
+		function step(timestamp) {
+			setTimeout(function(){
+				var progress;
+				if (start === null) start = timestamp;
+				progress = timestamp - start;
+				d.style.left = Math.min(progress/10, 200) + "px"; //cheh
+				if (progress < 2000) {
+					requestAnimationFrame(step);
+				}
+			}, 1000/50);
+		}
+
+		requestAnimationFrame(step);
+		*/
+	</script>
+	
+</body>
+
+</html>
