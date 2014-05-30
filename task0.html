@@ -11,18 +11,31 @@
 	<style>
 		#dot{
 			position:absolute;
-			top:50px;
+			top:100px;
 			left:100px;
 			width:50px;
 			height:50px;
 			background:red;
-			border-radius:70%;
+			border-radius:50%;
 		}
 	</style>
 	
 	<script>
 		function $(id) {
 			return document.getElementById(id);
+		}
+		function getStyle(oElm, strCssRule){
+			var strValue = "";
+			if(document.defaultView && document.defaultView.getComputedStyle){
+				strValue = document.defaultView.getComputedStyle(oElm, "").getPropertyValue(strCssRule);
+			}
+			else if(oElm.currentStyle){
+				strCssRule = strCssRule.replace(/\-(\w)/g, function (strMatch, p1){
+					return p1.toUpperCase();
+				});
+				strValue = oElm.currentStyle[strCssRule];
+			}
+			return strValue;
 		}
 		/*
 		var start = null;
@@ -43,6 +56,32 @@
 
 		requestAnimationFrame(step);
 		*/
+		var dot = $('dot');
+		var XCONST = parseInt(getStyle(dot,"left"));
+		var	YCONST = parseInt(getStyle(dot,"top"));
+		
+		var startTime = null;
+		var progress = null;
+		var R = 50;
+		var a = 0;
+		
+		var x = XCONST;
+		var y = YCONST;
+		
+		function updateAnim (timestamp) {
+			if(startTime === null) {
+				startTime = timestamp;
+			}
+			progress = timestamp - startTime;
+			a = progress*(Math.PI)/2000;
+			x = XCONST + R*Math.cos(a);
+			y = YCONST + R*Math.sin(a);
+			dot.style.left = parseInt(x) + "px";
+			dot.style.top = parseInt(y) + "px";
+			requestAnimationFrame(updateAnim);
+		}
+		
+		requestAnimationFrame(updateAnim);
 	</script>
 	
 </body>

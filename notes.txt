@@ -1,0 +1,16 @@
+moving in circle...
+
+R and a are params
+R is const = some value (some 70 pixels would be nice.
+
+a depends on t
+a = kt
+now it can complete one rotation in 4 seconds, say
+therefore 2pi = k(4)
+k = pi/2
+
+a = (pi/2)*t
+
+using a canvas we can get this shit drawn...
+x = XCONST+Rcosa
+y = YCONST+Rsina
